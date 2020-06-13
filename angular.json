@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "appbarbershop4"
+    }
+  },
+  "defaultProject": "appbarbershop4",
+  "cli": {
+    "analytics": "2a52852d-5fb6-496e-8bb5-a04cb5c903b0"
+  }
 }
