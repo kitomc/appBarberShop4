@@ -1,1 +1,25 @@
-<p>cola-usuario works!</p>
+
+    <div *ngFor="let item of clientes" class="profile-img mb-3 bg-white"style="border-radius: 75px 75px 75px 75px;
+    border: 0px solid #000000;">
+
+<div class="container row m-auto ">
+
+
+
+        <div class="col-2 ">
+
+            <img src= {{item.imagen}} class="" style="width: 54px; height: 54px; ">
+        </div>
+
+        <div class="col">
+            <h4 class="text-center text-dark pt-3" >{{ item.nombre }}</h4>
+        </div>
+        <div class="col-1">
+            <span class="badge badge-primary mt-4"> {{item.turno }} </span>
+        </div>
+    </div>
+
+</div>
+
+
+
