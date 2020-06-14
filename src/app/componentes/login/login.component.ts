@@ -4,7 +4,11 @@ import { AuthService } from "angularx-social-login";
 import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 
 import { SocialUser } from "angularx-social-login";
+import { CUsuario } from 'src/app/CUsuario';
  
+import { Observable, empty } from 'rxjs';
+import { ColaService } from 'src/app/cola.service';
+
 
 @Component({
   selector: 'app-login',
@@ -13,19 +17,24 @@ import { SocialUser } from "angularx-social-login";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService , private colaServicio:ColaService) { }
 
   public user: SocialUser;
   public loggedIn: boolean;
   public loggedOut: boolean;
-  public show : boolean;
-  public hide : boolean;
+
+
+//Contador
+private contador:number;
+ 
+clientes$: Observable<CUsuario[]>;
 
   ngOnInit() {
     this.authService.authState.subscribe((user) => {
       this.user = user;
       this.loggedIn = (user != null);
       this.loggedOut=true;
+      this.contador=1;
 
       if (this.user) {
         this.loggedOut=false;
@@ -33,6 +42,7 @@ export class LoginComponent implements OnInit {
         
       }
 
+      
     });
   }
   signInWithGoogle(): void {
@@ -51,8 +61,25 @@ export class LoginComponent implements OnInit {
     this.authService.signOut();
     this.loggedOut=true;
     this.loggedIn=false;
+    this.colaServicio.limpiarCola();
+    
 
   }
+  public AgregarCola(){
 
-  
+    let usuario = new CUsuario;
+    usuario.nombre=this.user.firstName;
+    usuario.imagen=this.user.photoUrl;
+    usuario.turno=this.ContadorTurno();
+    this.colaServicio.agregarCliente(usuario)
+    console.log(usuario);
+    return usuario;
+  }
+  ContadorTurno(){
+
+    return this.contador++;
+   
+     }
+
+ 
 }
