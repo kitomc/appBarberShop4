@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
   public user: SocialUser;
   public loggedIn: boolean;
   public loggedOut: boolean;
+  public enTurno:boolean;
 
 
 //Contador
@@ -35,6 +36,7 @@ clientes$: Observable<CUsuario[]>;
       this.loggedIn = (user != null);
       this.loggedOut=true;
       this.contador=1;
+      this.enTurno= false;
 
       if (this.user) {
         this.loggedOut=false;
@@ -66,7 +68,8 @@ clientes$: Observable<CUsuario[]>;
 
   }
   public AgregarCola(){
-
+    this.enTurno=true;
+    this.loggedIn=false;
     let usuario = new CUsuario;
     usuario.nombre=this.user.firstName;
     usuario.imagen=this.user.photoUrl;
@@ -74,6 +77,7 @@ clientes$: Observable<CUsuario[]>;
     this.colaServicio.agregarCliente(usuario)
     console.log(usuario);
     return usuario;
+    
   }
   ContadorTurno(){
 

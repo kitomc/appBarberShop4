@@ -16,10 +16,10 @@ export class ColaUsuarioComponent implements OnInit {
 
   clientes$: Observable<CUsuario[]>;
   clientes : CUsuario []=[];
-  
+    
   ngOnInit(): void {
     this.clientes$ = this.colaServicio.getClientes$();
     this.clientes$.subscribe(clientes => this.clientes = clientes);
   }
-
+ 
 }
