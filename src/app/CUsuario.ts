@@ -1,3 +1,4 @@
+import { CCorte } from './CCorte';
 
 
 export class CUsuario {
@@ -5,10 +6,7 @@ export class CUsuario {
 nombre:string;
 imagen:string;
 turno:number;
-
-
-
-
+corte:CCorte;
 
 private static instance: CUsuario;
 
