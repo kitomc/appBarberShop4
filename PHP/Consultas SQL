@@ -1,0 +1,105 @@
+drop database burgos;
+
+create database burgos;
+
+
+use burgos;
+
+create table corte(
+id int auto_increment primary key,
+descripcion varchar(250),
+precio int
+);
+
+
+create table clientes(
+id int auto_increment primary key,
+nombre varchar(150) ,
+telefono varchar(20),
+turno int,
+idCorte int,
+idEstado int,
+imagen  varchar(2083),
+foreign key (idCorte) references corte (id),
+foreign key (idEstado) references estado (id)
+);
+
+
+create table estado(
+id int auto_increment primary key ,
+descripcion varchar(150)
+);
+
+drop table clientes ;
+drop table corte ;
+drop table estado;
+
+
+insert into corte (descripcion,precio) values  ('Cerquillo Adultos',150);
+insert into estado (descripcion) values ('Activo');
+insert into estado (descripcion) values ('inActivo');
+insert into estado (descripcion) values ('enCurso');
+
+truncate table clientes	; 
+
+insert into clientes (nombre,telefono,turno,idCorte,imagen,idEstado) values ('Juan Pablo Duarte','829-864-0531',5,1,'https://secure.gravatar.com/avatar/c029d9c101e62102deeea40cee8ebe2d?s=96&d=mm&r=g',1);
+insert into clientes (nombre,telefono,turno,idCorte,imagen,idEstado) values ('Ramon Matias Mella','829-864-0442',1,1,'https://secure.gravatar.com/avatar/eb05d8c5ce1b11564c3e948b62afd3e5?s=96&d=mm&r=x',3);
+select id,descripcion,precio from corte;
+select * from corte;
+
+select nombre,turno,imagen from clientes;
+select *from clientes;
+select *from estado;
+
+select nombre,telefono,turno,Idcorte,imagen from clientes c;
+
+#Consulta completa de cliente en cola
+
+select cli.nombre ,cli.turno ,cli.telefono ,cor.descripcion ,es.descripcion from clientes cli
+inner join corte cor on   cli.idCorte=cor.id
+inner join estado es on cli.idEstado =es.id;
+
+#Consulta numero  en cola activo
+#activo
+select count(id ) as PersonasEnCola
+from clientes c 
+where c.idEstado =1;
+
+#Consulta numero de personas   Pelando EnTurno
+#en Curso
+select count(nombre ) as PersonasPelando
+from clientes c 
+where c.idEstado =3;
+
+#Consulta de Ingresos estimados por Estado Activo
+select sum(co.precio  ) as IngresosEstimados from clientes c  
+inner join corte co ON  c.idCorte =co.id  
+where c.idEstado =1;
+
+#Consulta de Ingresos estimados por Estado EnCurso
+select sum(co.precio  ) as IngresosEstimados from clientes c  
+inner join corte co ON  c.idCorte =co.id  
+where c.idEstado =3;
+
+#Consulta Detalle Clientes En Cola
+select cli.nombre ,cli.imagen, cli.turno from clientes cli
+where cli.idEstado =1;
+
+
+#Consulta Lista de Turnos  menor a Mayor
+select c.turno 
+from clientes c 
+where c.idEstado =1
+order by(c.turno ) asc;
+
+#Buscar Ultimo en el turno
+select max (c.turno )
+from clientes c 
+where c.idEstado =1;
+
+
+#Lista de cortes
+select descripcion,precio from corte;
+
+#Consulta de Estado del Admin
+select admin.idEstado  from admin; 
