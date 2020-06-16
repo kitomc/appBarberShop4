@@ -9,6 +9,8 @@ import { ColaUsuarioComponent } from './componentes/cola-usuario/cola-usuario.co
 
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
 import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
+import { ColaService } from './cola.service';
+import { FormsModule } from '@angular/forms';
  
 let config = new AuthServiceConfig([
   {
@@ -34,12 +36,16 @@ export function provideConfig() {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SocialLoginModule
+    SocialLoginModule,
+    FormsModule
   ],
   providers: [{
     provide: AuthServiceConfig,
     useFactory: provideConfig
-  }],
+  },
+  ColaService
+
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

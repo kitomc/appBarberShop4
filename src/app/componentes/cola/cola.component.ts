@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+
+
 
 @Component({
   selector: 'app-cola',
@@ -9,7 +11,11 @@ export class ColaComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void{
+
+
   }
+
+
 
 }
