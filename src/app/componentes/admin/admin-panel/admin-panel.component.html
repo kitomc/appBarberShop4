@@ -1,0 +1,39 @@
+
+<div class="container mt-5 mx-auto ">   
+
+  <div class="text-center">
+
+    <h1 >
+      <span class="font-weight-light">Barber Shop</span>  
+      <div class="text-sm-left w-1">  Admin</div>
+    </h1>
+  </div>
+
+
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs ">
+  <li [ngbNavItem]="1">
+    <a ngbNavLink>Cola <span class="badge badge-pill badge-primary">24</span> </a> 
+    <ng-template ngbNavContent>
+      <app-admin-cola></app-admin-cola>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="2">
+    <a ngbNavLink>Cortes</a>
+    <ng-template ngbNavContent>
+
+      <app-admin-cortes></app-admin-cortes>
+
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="3">
+    <a ngbNavLink>Ingresos</a>
+    <ng-template ngbNavContent>
+      <app-admin-ingresos></app-admin-ingresos>
+    </ng-template>
+  </li>
+</ul>
+
+<div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+<pre>Active: {{ active }}</pre>
+ </div>
