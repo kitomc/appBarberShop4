@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
 //Contador
 private contador:number;
  
+//observable
 clientes$: Observable<CUsuario[]>;
 
   ngOnInit() {
@@ -69,7 +70,7 @@ clientes$: Observable<CUsuario[]>;
   }
   public AgregarCola(){
     this.enTurno=true;
-    this.loggedIn=false;
+   // this.loggedIn=false;
     let usuario = new CUsuario;
     usuario.nombre=this.user.firstName;
     usuario.imagen=this.user.photoUrl;
