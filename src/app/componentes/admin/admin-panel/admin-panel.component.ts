@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import {MediaMatcher} from '@angular/cdk/layout';
 import {ChangeDetectorRef, OnDestroy} from '@angular/core';
+import { NgClass } from '@angular/common';
 
 
 
@@ -18,7 +19,7 @@ import {ChangeDetectorRef, OnDestroy} from '@angular/core';
 })
 export class AdminPanelComponent implements OnInit {
 
-  active = 1;
+  active ;
 
   constructor() {
 
