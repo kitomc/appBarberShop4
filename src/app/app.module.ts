@@ -27,7 +27,9 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {MatNativeDateModule} from '@angular/material/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import {MatIconModule} from '@angular/material/icon'
+import {MatIconModule} from '@angular/material/icon';
+import { CortesComponent } from './componentes/cortes/cortes.component'
+import {MatButtonModule} from '@angular/material/button';
 
 
 
@@ -61,7 +63,8 @@ export function provideConfig() {
     AdminPanelComponent,
     AdminCortesComponent,
     AdminColaComponent,
-    AdminIngresosComponent
+    AdminIngresosComponent,
+    CortesComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,7 +85,7 @@ export function provideConfig() {
     MatNativeDateModule,
     ReactiveFormsModule,
     MatSidenavModule,
-    MatIconModule
+    MatIconModule,
 
     
   ],

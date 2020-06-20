@@ -93,9 +93,7 @@ where c.idEstado =1
 order by(c.turno ) asc;
 
 #Buscar Ultimo en el turno
-select max (c.turno )
-from clientes c 
-where c.idEstado =1;
+select turno from clientes where idEstado=1;
 
 
 #Lista de cortes
@@ -103,3 +101,11 @@ select descripcion,precio from corte;
 
 #Consulta de Estado del Admin
 select admin.idEstado  from admin; 
+
+
+id14132586_admin         //Usuario de la Base de Dato
+id14132586_terratech     //nombre de base de datos
+admin                    //admin
+HZ+b~R(=lCkT6i7s         //pwd
+id14132586_aaaaaaaa
+\0i5Z[j>Yhx}apno

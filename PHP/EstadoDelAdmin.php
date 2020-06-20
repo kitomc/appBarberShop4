@@ -2,7 +2,7 @@
   header('Access-Control-Allow-Origin: *'); 
   header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
   
-  require("conexion.php");
+  require("conexionAdmin.php");
   $con=retornarConexion();
 
   $registros=mysqli_query($con,"select admin.idEstado  from admin;");

@@ -47,17 +47,19 @@
   <div class="modal-dialog" >
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Corte</h5>
+        <h2 class="modal-title text-dark text-center" id="exampleModalLabel"> Cortes Disponibles</h2>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        ...
+      <div class="container">
+
+        <app-cortes (telHijo)="setTelefono($event)" (mostrar)="MostrarBtnAgregar($event)"></app-cortes>
       </div>
+     
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="AgregarCola()">Ponerme en Turno</button>
+        <button *ngIf="mostrarBtn"  type="button" class="btn btn-primary"  data-dismiss="modal" (click)="AgregarCola()">Ponerme en Turno</button>
       </div>
     </div>
   </div>

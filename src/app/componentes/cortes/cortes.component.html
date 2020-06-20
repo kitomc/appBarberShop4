@@ -1,0 +1,19 @@
+
+<div  class="btn-group btn-group-toggle mb-2"  *ngFor="let item of Cortes ; trackeby:trackByFn">
+    <label class="btn-primary" ngbButtonLabel >
+      <input type="checkbox" ngbButton  [value]="item.id" (click)="imprimir(item.id)">    {{item.descripcion}} {{item.precio | currency:'$DOP  '}}
+    </label>  
+   
+  </div>
+  <div class="input-group input-group-sm mb-3 mt-4">
+    <div class="input-group-prepend">
+      <span class="input-group-text" >Telefono</span>
+    </div >
+    <input type="text" [(ngModel)]="tele">
+      <div class="container">
+    <button *ngIf="ocultar" type="submit" class="btn btn-primary mt-3"    (click)="establecerTelefono()" >Ponerme en Cola</button>
+    </div>
+    
+  </div>
+  <hr>
+

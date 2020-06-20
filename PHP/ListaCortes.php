@@ -5,7 +5,7 @@
   require("conexion.php");
   $con=retornarConexion();
 
-  $registros=mysqli_query($con,"sselect descripcion,precio from corte;");
+  $registros=mysqli_query($con,"select id,descripcion,precio from corte;");
   $vec=[];  
   while ($reg=mysqli_fetch_array($registros))  
   {

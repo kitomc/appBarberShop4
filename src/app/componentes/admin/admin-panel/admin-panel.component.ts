@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import {MediaMatcher} from '@angular/cdk/layout';
-import {ChangeDetectorRef, OnDestroy} from '@angular/core';
-import { NgClass } from '@angular/common';
-
-
-
+import {  Observable } from 'rxjs';
+import { ColaService } from 'src/app/cola.service';
 
 
 
@@ -19,16 +15,32 @@ import { NgClass } from '@angular/common';
 })
 export class AdminPanelComponent implements OnInit {
 
-  active ;
-
-  constructor() {
+  active;
+  cantidad$:Observable<any[]>;
+  cantidad:any[]=[];
+  constructor(private colaServicio :ColaService) {
 
 
   }
   ngOnInit(): void {
-  }
-
  
+  this.cantidad$ = this.colaServicio.CantidadEnCola$();
+  this.cantidad$.subscribe( cant=> this.cantidad=cant)
+
+
+
+   }
+
+  
+  
+ obtenerCantidad(){
+  
+  
+
+
+   return this.cantidad['turno'];
+   console.dir(this.cantidad.values)
+ }
 
 
 }

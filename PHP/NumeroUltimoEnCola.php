@@ -5,14 +5,14 @@
   require("conexion.php");
   $con=retornarConexion();
 
-  $registros=mysqli_query($con,"select max (c.turno ) from clientes c  where c.idEstado =1;");
+  $registros=mysqli_query($con,"select turno from clientes where idEstado=1");
   $vec=[];  
   while ($reg=mysqli_fetch_array($registros))  
   {
     $vec[]=$reg;
   }
   
-  $cad=json_encode($vec);
-  echo $cad;
+  $cad=json_encode(max($vec));
+  echo ($cad);
   header('Content-Type: application/json');
 ?>

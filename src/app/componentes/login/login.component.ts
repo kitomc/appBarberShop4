@@ -8,6 +8,8 @@ import { CUsuario } from 'src/app/CUsuario';
  
 import { Observable, empty } from 'rxjs';
 import { ColaService } from 'src/app/cola.service';
+import { CCorte } from 'src/app/CCorte';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -24,12 +26,17 @@ export class LoginComponent implements OnInit {
   public loggedOut: boolean;
   public enTurno:boolean;
 
-
+  mostrarBtn:boolean;
 //Contador
 private contador:number;
  
 //observable
 clientes$: Observable<CUsuario[]>;
+clientes:CUsuario [];
+Cortes$: Observable<CCorte[]>;
+Cortes :CCorte[]=[];
+cantidad$:Observable<any[]>;
+cantidad:any[]=[];
 
   ngOnInit() {
     this.authService.authState.subscribe((user) => {
@@ -44,9 +51,14 @@ clientes$: Observable<CUsuario[]>;
         this.loggedIn=true;
         
       }
-
-      
     });
+
+    this.cantidad$ = this.colaServicio.CantidadEnCola$();
+    this.cantidad$.subscribe( cant=> this.cantidad=cant)
+    this.mostrarBtn=false;
+
+    this.actualizarArrayClientes();
+
   }
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
@@ -69,22 +81,58 @@ clientes$: Observable<CUsuario[]>;
 
   }
   public AgregarCola(){
+
+   let turnoUltimo = this.colaServicio.ultimoNumeroEnCola() ;
+  
     this.enTurno=true;
-   // this.loggedIn=false;
-    let usuario = new CUsuario;
+   //this.loggedIn=false;
+    //let usuario = new CUsuario;
+    let  usuario ={
+     id: null,
+     idSocialUser: null,
+     nombre: null,
+     telefono: null,
+     turno: null,
+     idCorte: null,
+     idEstado: null,
+    imagen: null
+    }
+
+    usuario.idSocialUser=this.user.id;
     usuario.nombre=this.user.firstName;
+    usuario.telefono=this.colaServicio.getTelefono();
+    usuario.turno= this.cantidad['turno'];
+    usuario.idCorte=this.colaServicio.getCorteId();
+    usuario.idEstado=1;
     usuario.imagen=this.user.photoUrl;
-    usuario.turno=this.ContadorTurno();
-    this.colaServicio.agregarCliente(usuario)
-    console.log(usuario);
-    return usuario;
+    //this.colaServicio.agregarCliente(usuario);
+    console.dir(usuario);
+    this.colaServicio.AgregarUsuarioCola(usuario);
+  
+    
+   // this.actualizarArrayClientes();
     
   }
-  ContadorTurno(){
+  
+  setTelefono(e){
+    this.colaServicio.setTelefono(e);
+   console.dir(e);
+    
+    }
+  
+  MostrarBtnAgregar(e){
+    e=true;
+   return this.mostrarBtn=e;
 
-    return this.contador++;
-   
-     }
+  }
 
+  actualizarArrayClientes(){
+
+    this.clientes$ = this.colaServicio.getClientes$();
+    this.clientes$.subscribe(clientes => this.clientes = clientes);
+
+
+  }
+    
  
 }

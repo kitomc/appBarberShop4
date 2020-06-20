@@ -12,7 +12,7 @@
 
 <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
   <li [ngbNavItem]="1">
-    <a ngbNavLink>Cola <span class="badge badge-pill badge-primary">24</span> </a> 
+    <a ngbNavLink>Cola <span class="badge badge-pill badge-primary"> {{obtenerCantidad()}} </span> </a> 
     <ng-template ngbNavContent>
       <app-admin-cola></app-admin-cola>
     </ng-template>
